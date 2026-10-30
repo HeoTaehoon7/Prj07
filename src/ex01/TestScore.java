@@ -1,5 +1,6 @@
 package ex01;
 
+
 /*  1번
 num,name,kor,eng,mat
 번호,이름,국어,영어,수학
@@ -31,36 +32,123 @@ class  Score {
 	private  char     grade;
 	
 	// Constructor : new 할때 초기화 - 입력
-	public Score() {}
-	
+	public Score() {}	
 	public Score(int num, String name, int kor, int eng, int mat ) {
-		super();
 		this.num = num;
 		this.name = name;
 		this.kor = kor;
 		this.eng = eng;
 		this.mat = mat;
-		
+		/*
 		this.tot = 0;
 		this.avg = 0.0;
 		this.grade = 'F';
+		*/
+	}
+	
+	// Getter / Setter
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getKor() {
+		return kor;
+	}
+	public void setKor(int kor) {
+		this.kor = kor;
+	}
+	public int getEng() {
+		return eng;
+	}
+	public void setEng(int eng) {
+		this.eng = eng;
+	}
+	public int getMat() {
+		return mat;
+	}
+	public void setMat(int mat) {
+		this.mat = mat;
+	}
+	public int getTot() {
+		return tot;
+	}
+	public void setTot(int tot) {
+		this.tot = tot;
+	}
+	public double getAvg() {
+		return avg;
+	}
+	public void setAvg(double avg) {
+		this.avg = avg;
+	}
+	public char getGrade() {
+		return grade;
+	}
+	public void setGrade(char grade) {
+		this.grade = grade;
+	}	
+
+	// toString : 값 중간확인용
+	@Override
+	public String toString() {
+		return "Score [num=" + num + ", name=" + name + ", kor=" + kor + ", eng=" + eng + ", mat=" + mat + ", tot="
+				+ tot + ", avg=" + avg + ", grade=" + grade + "]";
 	}
 	
 	
-	// 메소드 기능(함수)  : 입력, 처리, 출력
+	// 메소드
+	public int calcTot() {
+		tot = kor + eng + mat;
+		return tot;
+	}
 	
-	public   void     input() {}
+	// 평균
+	public double calcAvg() {
+		// avg  = tot / 3.0;  // X 총점을 계산하지 않았을때 0점
+		avg  = calcTot() / 3.0; 
+		//  == avg  = (kor + eng + mat) / 3.0;
+		return  avg;
+	}
+	public String calcGrade() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
-	public   void     process() {}
-	public   void     output() {}
+	
 	
 }
 
 public class TestScore {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
+		Score score1 = new Score(1,"사나",70,80,90);
+		System.out.println( score1.toString() );
+		// System.out.println( score1 );'
+		int    tot    = score1.calcTot();
+		String totStr = String.valueOf( tot );
+		System.out.println( "총점:" +  totStr  );		
+		System.out.println("평균:" + score1.calcAvg() );
+		System.out.println("학점:" + score1.calcGrade() );
 
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
