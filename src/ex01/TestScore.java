@@ -101,8 +101,7 @@ class  Score {
 	public String toString() {
 		return "Score [num=" + num + ", name=" + name + ", kor=" + kor + ", eng=" + eng + ", mat=" + mat + ", tot="
 				+ tot + ", avg=" + avg + ", grade=" + grade + "]";
-	}
-	
+	}	
 	
 	// 메소드
 	public int calcTot() {
@@ -117,9 +116,21 @@ class  Score {
 		//  == avg  = (kor + eng + mat) / 3.0;
 		return  avg;
 	}
-	public String calcGrade() {
-		// TODO Auto-generated method stub
-		return null;
+	
+	// grade 
+	public char calcGrade() {
+		// 평균이 90 ~ 100     : 'A'
+		// 평균이 80 ~ 90 미만 : 'B'
+		// 평균이 70 ~ 80 미만 : 'C'
+		// 평균이 60 ~ 70 미만 : 'D'
+		// 평균이  0 ~ 60 미만 : 'F'
+		avg  = calcAvg();
+		if( 90 <= avg && avg <= 100  ) grade = 'A';
+		else if( 80 <= avg && avg <   90  ) grade = 'B';
+		else if( 70 <= avg && avg <   80  ) grade = 'C';
+		else if( 60 <= avg && avg <   70  ) grade = 'D';
+		else if(  0 <= avg && avg <   60  ) grade = 'F';
+		return grade;
 	}
 	
 	
@@ -139,6 +150,28 @@ public class TestScore {
 		System.out.println("평균:" + score1.calcAvg() );
 		System.out.println("학점:" + score1.calcGrade() );
 
+		// 5,원영,90,90,89
+		Score score2 = new Score();
+		score2.setNum(5);   // score2.num = 5
+		score2.setName("원영");
+		score2.setKor(90);
+		score2.setEng(90);
+		score2.setMat(89);
+		score2.calcTot();
+		score2.calcAvg();
+		score2.calcGrade();
+		
+		System.out.println( score2 );
+		
+		//출력:번호 이름 국어 영어 수학 총점 평균  등급
+		//num, name, kor, eng, mat, tot, avg, grade
+		System.out.println("번호 이름 국어 영어 수학 총점 평균  등급");
+		System.out.printf("%d  %s  %d  %d  %d  %d  %.3f %c",
+				score2.getNum(), score2.getName(), 
+				score2.getKor(), score2.getEng(), score2.getMat(),
+				score2.getTot(), score2.getAvg(), score2.getGrade()	);
+		
+		
 	}
 
 }
